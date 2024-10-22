@@ -1,26 +1,40 @@
+const VIRUS_TOTAL_API_KEY = 'PLACE_API_HERE'; // Replace with your VirusTotal API key
+const KNOWN_DOMAINS = ['google.com', 'facebook.com', 'amazon.com']; // Add more known legitimate domains
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.type === 'checkUrl') {
-        fetch(`https://www.virustotal.com/api/v3/urls/${request.encodedUrl}`, {
-            method: 'GET',
-            headers: {
-                'x-apikey': '7445627c19e8356df7ebafbced41008919dc10e86941dcac25c8b93a6495d0a5'  // Replace with your VirusTotal API key
-            }
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then(data => {
-            sendResponse(data);
-        })
-        .catch(error => {
-            console.error('Error fetching data from VirusTotal:', error);
-            sendResponse({ error: 'An error occurred while checking the URL.' });
-        });
+        const url = request.encodedUrl;
 
-        // Keep the message channel open until sendResponse is called
-        return true;
+        if (isCousinDomain(url)) {
+            sendResponse({ error: 'Cousin domain detected. The URL is too similar to known safe domains.' });
+            return true;
+        }
+
+        if (detectHomoglyphAttack(url)) {
+            sendResponse({ error: 'Homoglyph attack detected. The URL contains suspicious characters.' });
+            return true;
+        }
+
+        checkUrlWithVirusTotal(url, sendResponse);
+        return true; // Keep the message channel open until sendResponse is called
     }
 });
+
+async function checkUrlWithVirusTotal(url, sendResponse) {
+    try {
+        const response = await fetch(`https://www.virustotal.com/api/v3/urls/${url}`, {
+            method: 'GET',
+            headers: { 'x-apikey': VIRUS_TOTAL_API_KEY }
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        
+        const data = await response.json();
+        sendResponse(data);
+    } catch (error) {
+        console.error('Error fetching data from VirusTotal:', error);
+        sendResponse({ error: 'An error occurred while checking the URL.' });
+    }
+}

@@ -1,68 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phishing Checker</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 10px;
-            width: 320px; /* Increased popup width */
-        }
-        input {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-        button {
-            padding: 10px;
-            width: 100%;
-            background-color: #4CAF50; /* Stylish green button */
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .result, .summary {
-            margin-top: 10px;
-        }
-        .highlight {
-            color: red;
-            font-weight: bold;
-        }
-        .loading {
-            margin-top: 10px;
-            text-align: center;
-            font-style: italic;
-            color: grey;
-        }
-        /* Circle graph container */
-        #chart {
-            display: none;
-            text-align: center;
-        }
-        canvas {
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">  <!-- Link to your existing CSS -->
 </head>
+
 <body>
-    <input type="text" id="urlInput" placeholder="Enter URL to check" />
-    <button id="checkButton">Check URL</button>
-    
-    <div class="loading" id="loading">Checking URL, please wait...</div>  <!-- Loading message -->
-    <div class="summary" id="summary" style="font-weight: bold;"></div>  <!-- Summary result -->
-    <div class="result" id="result"></div>  <!-- Result details -->
-    
-    <!-- Circle chart -->
-    <div id="chart">
-        <canvas id="chartCanvas" width="300" height="200"></canvas>
+    <div class="container">  <!-- Added container for consistent styling -->
+        <input type="text" id="urlInput" placeholder="Enter URL to check" />
+        <button id="checkButton">Check URL</button>
+
+        <div class="loading" id="loading">
+            <span class="spinner"></span> Checking URL, please wait...
+        </div> <!-- Loading message -->
+        <div class="summary" id="summary"></div> <!-- Summary result -->
+        <div class="result" id="result"></div> <!-- Result details -->
+
+        <!-- Circle chart -->
+        <div id="chart">
+            <canvas id="chartCanvas" width="300" height="200"></canvas>
+        </div>
     </div>
 
+    <script src="libs/chart.umd.js"></script>
     <script src="popup.js"></script>
 </body>
+
 </html>
