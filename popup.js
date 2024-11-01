@@ -18,7 +18,7 @@ document.getElementById('checkButton').addEventListener('click', async () => {
 
         // Display homoglyph warning if detected
         if (response.homoglyphs) {
-            resultDiv.innerHTML = `This URL contains homoglyphs: <span style="color: red;">${response.homoglyphs}</span>!`;
+            resultDiv.innerHTML = `This URL contains homoglyphs: <span style="color: red;">${response.homoglyphs}</span>`;
             resultDiv.style.color = "red"; // Change text color for warning
             resultDiv.style.display = 'block'; // Show the result div
         }
