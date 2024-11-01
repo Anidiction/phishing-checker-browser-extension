@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phishing Checker</title>
-    <link rel="stylesheet" href="styles.css">  <!-- Link to your existing CSS -->
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your existing CSS -->
 </head>
 
 <body>
-    <div class="container">  <!-- Added container for consistent styling -->
+    <div class="container"> <!-- Added container for consistent styling -->
+        <h1 class="header-title">Anti-Phishing</h1> <!-- New header title -->
         <input type="text" id="urlInput" placeholder="Enter URL to check" />
         <button id="checkButton">Check URL</button>
 
@@ -18,7 +18,10 @@
         </div> <!-- Loading message -->
         <div class="summary" id="summary"></div> <!-- Summary result -->
         <div class="result" id="result"></div> <!-- Result details -->
-
+        <div id="cousinWarning" style="color: red; display: none;"></div> <!-- Warning for cousin domain -->
+        <div id="redirectContainer" style="display: none;">
+            <button id="redirectButton">Open URL</button>
+        </div>
         <!-- Circle chart -->
         <div id="chart">
             <canvas id="chartCanvas" width="300" height="200"></canvas>
@@ -27,6 +30,7 @@
 
     <script src="libs/chart.umd.js"></script>
     <script src="popup.js"></script>
+    <script src="libs/string-similarity.min.js"></script>
 </body>
 
 </html>

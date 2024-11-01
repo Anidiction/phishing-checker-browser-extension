@@ -3,10 +3,18 @@
     "name": "Phishing Checker",
     "version": "1.0.1",
     "description": "A browser extension to check URLs for phishing using VirusTotal and detect cousin domains and homoglyph attacks.",
-    "permissions": ["activeTab", "scripting"],
-    "host_permissions": ["https://www.virustotal.com/*"],
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "contextMenus",
+        "webRequest"
+    ],
+    "host_permissions": [
+        "https://www.virustotal.com/*"
+    ],
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "background.js",
+        "type": "module"
     },
     "action": {
         "default_popup": "popup.html",

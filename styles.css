@@ -1,99 +1,117 @@
-/* General styling */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-}
+    /* General styling */
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+    }
 
-.container {
-    max-width: 90%;
-    width: 350px;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    text-align: center;
-}
+    .container {
+        max-width: 90%;
+        width: 350px;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        text-align: center;
+    }
 
-/* Input field */
-input[type="text"] {
-    width: 100%;  
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    box-sizing: border-box;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s ease;
-}
+    /* Header title styling */
+    .header-title {
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #333;
+    }
 
-input[type="text"]:focus {
-    border-color: #5cb85c;
-    outline: none;
-}
 
-/* Button */
-button {
-    padding: 10px;
-    width: 100%;
-    background-color: #4caf50; 
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
+    /* Input field */
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        box-sizing: border-box;
+        background-color: #f9f9f9;
+        transition: border-color 0.3s ease;
+    }
 
-button:hover {
-    background-color: #45a049;
-}
+    input[type="text"]:focus {
+        border-color: #5cb85c;
+        outline: none;
+    }
 
-/* Loading animation */
-.loading {
-    display: none; 
-    margin-top: 10px;
-    text-align: center;
-    font-style: italic;
-    color: grey;
-}
+    /* Button */
+    button {
+        padding: 10px;
+        width: 100%;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
 
-.spinner {
-    border: 4px solid #f3f3f3; 
-    border-top: 4px solid #3498db; 
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    animation: spin 1s linear infinite;
-    display: inline-block;
-    margin-left: 10px; 
-}
+    button:hover {
+        background-color: #45a049;
+    }
 
-/* Spinner animation */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+    /* Loading animation */
+    .loading {
+        display: none;
+        margin-top: 10px;
+        text-align: center;
+        font-style: italic;
+        color: grey;
+    }
 
-/* Result section */
-.result,
-.summary {
-    margin-top: 10px;
-    font-weight: bold; 
-    display: none;
-}
+    .spinner {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        animation: spin 1s linear infinite;
+        display: inline-block;
+        margin-left: 10px;
+    }
 
-.result {
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #f8f8f8;
-    color: #333;
-    font-size: 14px;
-}
+    /* Spinner animation */
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
 
-/* Highlight malicious count */
-.highlight {
-    font-weight: bold;
-    color: red;
-}
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Result section */
+    .result,
+    .summary {
+        margin-top: 10px;
+        font-weight: bold;
+        display: none;
+    }
+
+    .result {
+        padding: 15px;
+        border-radius: 8px;
+        background-color: #f8f8f8;
+        color: #333;
+        font-size: 14px;
+        margin-top: 10px;
+        display: block;
+        /* Ensure this is visible when updating */
+    }
+
+
+    /* Highlight malicious count */
+    .highlight {
+        font-weight: bold;
+        color: red;
+    }
