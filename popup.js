@@ -1,6 +1,16 @@
 const API_KEY = '7445627c19e8356df7ebafbced41008919dc10e86941dcac25c8b93a6495d0a5'; // Replace with your VirusTotal API key
 
-document.getElementById('checkButton').addEventListener('click', async () => {
+// Add event listener for "Check URL" button click
+document.getElementById('checkButton').addEventListener('click', checkUrl);
+
+// Add event listener for pressing "Enter" in the URL input
+document.getElementById('urlInput').addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        checkUrl();
+    }
+});
+
+async function checkUrl() {
     const urlInput = document.getElementById('urlInput').value.trim();
     const loadingDiv = document.getElementById('loading');
     const resultDiv = document.getElementById('result');
@@ -21,6 +31,7 @@ document.getElementById('checkButton').addEventListener('click', async () => {
             resultDiv.innerHTML = `This URL contains homoglyphs: <span style="color: red;">${response.homoglyphs}</span>`;
             resultDiv.style.color = "red"; // Change text color for warning
             resultDiv.style.display = 'block'; // Show the result div
+            return; // Exit if homoglyphs are found
         }
 
         // Check URL with VirusTotal
@@ -40,7 +51,7 @@ document.getElementById('checkButton').addEventListener('click', async () => {
     } finally {
         loadingDiv.style.display = 'none';
     }
-});
+}
 
 function resetDisplay(resultDiv, summaryDiv, chartDiv, loadingDiv) {
     resultDiv.style.display = 'none';
@@ -84,6 +95,8 @@ function displayResults(url, analysisData, resultDiv, summaryDiv, chartDiv) {
     const totalVendors = malicious + suspicious + harmless + undetected;
     const redirectContainer = document.getElementById('redirectContainer');
     const redirectButton = document.getElementById('redirectButton');
+
+    console.log('Analysis Data:', analysisData);
 
     // Set summary message based on the analysis results
     if (malicious > 0 || suspicious > 0) {
